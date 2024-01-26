@@ -1,2 +1,5 @@
 src/.venv
 .env
+__pycache__
+bin
+lib/python3.11/site-packages
