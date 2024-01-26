@@ -2,7 +2,6 @@ import os
 import sched
 import time
 from dotenv import load_dotenv
-from csv_funcs import read_csv, write_csv, format_csv
 from selenium_funcs import main_selenium_process
 
 # Might move this to its own config file
