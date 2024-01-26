@@ -1,9 +1,11 @@
 import os
+from selenium import webdriver
 from selenium.webdriver.common.by import By
+from csv_funcs import write_csv
 
 def login(driver):
   # Main login page
-  print(driver.current_url)
+  # print(driver.current_url)
 
   login_link = driver.find_element(By.PARTIAL_LINK_TEXT, "deferred offer and enrol")
   login_link.click()
@@ -47,3 +49,21 @@ def select_classes(driver):
   # print(filtered_classes)
   
   return filtered_classes
+
+def main_selenium_process(URL):
+  driver = webdriver.Chrome()
+  driver.get(URL)
+  driver.implicitly_wait(2)
+
+  login(driver)
+  navigate_enrolment(driver)
+  classes_list = select_classes(driver)
+
+  driver.quit()
+
+  if os.path.exists('status_data.csv'):
+    write_csv(classes_list, 'new_status_data.csv')
+  else:
+    write_csv(classes_list, 'status_data.csv')
+
+  return classes_list
