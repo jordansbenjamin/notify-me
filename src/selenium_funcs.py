@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from csv_funcs import write_csv
 from data import check_data
+from send_sms import send_sms
 
 def login(driver):
   # Main login page
@@ -65,8 +66,11 @@ def main_selenium_process(URL):
   if os.path.exists('status_data.csv'):
     write_csv(classes_list, 'new_status_data.csv')
     # check if previous data differs from new data
-    print(check_data())
-    # if it differs, then send the txt msg
+    if check_data():
+      # if it differs, then send the txt msg
+      send_sms("There's a new slot for class timetables, check it now!")
+      # reset status_data_csv
+      write_csv(classes_list, 'status_data.csv')
   else:
     write_csv(classes_list, 'status_data.csv')
 

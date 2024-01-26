@@ -6,8 +6,12 @@ def format_csv(data):
     return formatted_csv_data
 
 def read_csv(file_name):
-  with open(file_name, 'r') as status_csvf:
-    csv_data = status_csvf.readlines()
+  try:
+    with open(file_name, 'r') as status_csvf:
+      csv_data = status_csvf.readlines()
+  except FileNotFoundError as err:
+    print(err)
+
   return csv_data
 
 def write_csv(classes_list, file_name):
