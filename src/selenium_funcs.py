@@ -17,21 +17,21 @@ def login(driver):
   driver.implicitly_wait(2)
 
 def navigate_enrolment(driver):
-  # Main enrolment page
-  print(driver.current_url)
+  # Program enrolment page
+  # print(driver.current_url)
 
   enrol_btn = driver.find_element(By.NAME, 'bsdsSubmit-update-enrol')
   enrol_btn.click()
 
-  # Enrolment page
-  print(driver.current_url)
+  # Courses enrolment page
+  # print(driver.current_url)
 
   select_classes_btn = driver.find_element(By.NAME, 'bsdsSubmit-select-classes')
   select_classes_btn.click()
 
 def select_classes(driver):
   # Select classes page
-  print(driver.current_url)
+  # print(driver.current_url)
 
   driver.implicitly_wait(2)
 
@@ -44,4 +44,6 @@ def select_classes(driver):
     # classes.append(li_class.find_element(By.TAG_NAME, 'span'))
 
   filtered_classes = [class_slot for class_slot in classes if len(class_slot) > 1]
-  print(filtered_classes)
+  # print(filtered_classes)
+  
+  return filtered_classes
